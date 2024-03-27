@@ -44,14 +44,12 @@
                         "sudo mkdir -p rootfs/opt/nvidia/deb_repos",
                         "wget https://github.com/forecr/milboard_agx_agxi_bsp/raw/master/agxi_JP5_1_bsp.tar.xz 2>downloadstatus.txt",
                         "tar -xf agxi_JP5_1_bsp.tar.xz",
-                        "cd ./agxi_JP5_1_bsp",
-                        "cp Image ../kernel/",
-                        "cp tegra194-p2888-0008-p2822-0000.dtb ../kernel/dtb/",
-                        "cp nvgpu.ko ../../",
-                        "cd ..",
+                        "cp ./agxi_JP5_1_bsp/* ../",
+                        "sudo ./tools/l4t_flash_prerequisites.sh",
                         "sudo ./apply_binaries.sh",
-                        "sudo mv ../nvgpu.ko rootfs/usr/lib/modules/5.10.104-tegra/kernel/drivers/gpu/nvgpu/nvgpu.ko",
-                        "sudo rm rootfs/usr/lib/modules/5.10.104-tegra/kernel/drivers/net/ethernet/microchip/lan743x.ko"
+                        "cd ..",
+                        "sudo ./replace_bsp_files.sh",
+                        "cd Linux_for_Tegra/"
                       ]
                     }
                   ]
